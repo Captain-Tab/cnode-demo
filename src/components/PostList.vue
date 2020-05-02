@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="loading" v-if="isLoading">
-      <img src="../assets/loading.gif" alt="loading">
+      <img src="../assets/img/loading.gif" alt="loading">
     </div>
 
     <div>
@@ -17,15 +17,28 @@
 
   export default {
     name: "PostList",
-    data(){
-      return{
-        isLoading:false
+    data() {
+      return {
+        isLoading: false
       }
     },
-    methods:{
-      getData(){
+    methods: {
+      getData() {
+        this.$http.get('https://cnodejs.org/api/v1/topics', {
+          page: 1,
+          limit: 20
+        })
+          .then(res => {
 
-      }
+          })
+          .catch(error=>{
+            console.log(error)
+          })
+        }
+      },
+    beforeMount() {
+      this.isLoading = true
+      this.getData()
     }
   }
 </script>

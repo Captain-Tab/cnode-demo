@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-   <Header></Header>
+    <Header></Header>
+    <PostList></PostList>
   </div>
 </template>
 
 <script>
   import Header from './components/Header'
-export default {
-  name: 'App',
-  components:{Header}
-}
+  import PostList from './components/PostList'
+  import './assets/style/reset.css'
+
+  export default {
+    name: 'App',
+    components: {Header, PostList}
+  }
 </script>
 
-<style>
+<style scoped >
 
 </style>
