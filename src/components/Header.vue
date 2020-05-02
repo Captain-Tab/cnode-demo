@@ -31,7 +31,6 @@
   }
 
   ul{
-    list-style: none;
     float: right;
     margin: 4px;
   }
@@ -42,9 +41,7 @@
   }
 
   a{
-    text-decoration: none;
     color: #ccc;
     font-size: 14px;
-    text-shadow: none;
   }
 </style>

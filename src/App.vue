@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <Header></Header>
-    <PostList></PostList>
+    <div class="main">
+      <PostList></PostList>
+    </div>
+
   </div>
 </template>
 
@@ -17,5 +20,8 @@
 </script>
 
 <style scoped >
-
+ .main{
+   width: 100%;
+   margin: 0 auto;
+ }
 </style>

@@ -4,12 +4,43 @@
       <img src="../assets/img/loading.gif" alt="loading">
     </div>
 
-    <div>
+    <div class="posts" v-else="isLoading">
       <ul>
-        <li></li>
+        <li>
+          <div class="topbar">
+            <span>全部</span>
+            <span>精华</span>
+            <span>分享</span>
+            <span>问答</span>
+            <span>招聘</span>
+          </div>
+        </li>
+
+        <li v-for="post in postData"
+            class="postItem">
+          <img :src="post.author.avatar_url" alt="userProfile">
+          <span>
+            <span class="reply_count">{{post.reply_count}}</span>
+            /{{post.visit_count}}
+          </span>
+          <span :class="[{
+            put_good:(post.good === true),
+            put_top:(post.top === true),
+            'topiclist-tab':(post.good != true && post.top != true)
+          }]">
+            <span>
+              {{post| tabFormate}}
+            </span>
+          </span>
+          <span class="post_title">
+            {{post.title}}
+          </span>
+          <span class="last_reply">
+            {{post.last_reply_at | formatDate}}
+          </span>
+        </li>
       </ul>
     </div>
-
   </div>
 </template>
 
@@ -19,7 +50,8 @@
     name: "PostList",
     data() {
       return {
-        isLoading: false
+        isLoading: false,
+        postData: []
       }
     },
     methods: {
@@ -29,13 +61,14 @@
           limit: 20
         })
           .then(res => {
-
+            this.isLoading = false
+            this.postData = res.data.data
           })
-          .catch(error=>{
+          .catch(error => {
             console.log(error)
           })
-        }
-      },
+      }
+    },
     beforeMount() {
       this.isLoading = true
       this.getData()
@@ -44,5 +77,126 @@
 </script>
 
 <style scoped>
+
+  .loading {
+    width: 90%;
+    max-width: 1080px;
+    margin: auto;
+    position: relative;
+    background-color: #ffffff;
+  }
+
+  .loading > img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .posts {
+    background-color: #e1e1e1;
+    margin-top: 10px;
+  }
+
+  .last_reply {
+    text-align: right;
+    min-width: 50px;
+    display: inline-block;
+    white-space: nowrap;
+    float: right;
+    color: #778087;
+    font-size: 12px;
+  }
+
+  ul {
+    width: 100%;
+    max-width: 1344px;
+    margin: 0 auto;
+  }
+
+  ul li:not(:first-child) {
+    padding: 9px;
+    font-size: 15px;
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, sans-serif !important;
+    font-weight: 400;
+    background-color: white;
+    color: #333;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  li:not(:first-child):hover {
+    background: #f5f5f5;
+  }
+
+  li:last-child:hover {
+    background: white;
+  }
+
+  li span {
+    line-height: 30px;
+  }
+
+  .posts li {
+    padding: 10px 0 10px 10px;
+    position: relative;
+    border-top: 1px solid #f0f0f0;
+  }
+  .posts li:first-child {
+    padding: 10px 0 10px 0px;
+  }
+  .postItem img {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+
+  .reply_count {
+    color: #9e78c0;
+    font-size: 14px;
+  }
+
+  .put_good, .put_top {
+    background: #80bd01;
+    padding: 2px 4px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .topiclist-tab {
+    background-color: #e5e5e5;
+    color: #999;
+    padding: 2px 4px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .post_title:hover {
+    text-decoration: underline;
+  }
+
+  .topbar {
+    height: 40px;
+    background-color: #f5f5f5;
+  }
+
+  .topbar span {
+    font-size: 14px;
+    color: #80bd01;
+    line-height: 40px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
+  .topbar span:hover {
+    color: #9e78c0;
+  }
 
 </style>
