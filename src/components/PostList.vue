@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="loading" v-if="isLoading">
-      <img src="../assets/img/loading.gif" alt="loading">
-    </div>
+   <Loading v-if="isLoading"></Loading>
 
     <div class="posts" v-else="isLoading">
       <ul>
@@ -45,9 +43,10 @@
 </template>
 
 <script lang="js">
-
+  import Loading  from './Loading'
   export default {
     name: "PostList",
+    components:{Loading},
     data() {
       return {
         isLoading: false,
@@ -77,21 +76,6 @@
 </script>
 
 <style scoped>
-
-  .loading {
-    width: 90%;
-    max-width: 1080px;
-    margin: auto;
-    position: relative;
-    background-color: #ffffff;
-  }
-
-  .loading > img {
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    margin: 0 auto;
-  }
 
   .posts {
     background-color: #e1e1e1;
