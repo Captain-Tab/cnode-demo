@@ -12,7 +12,7 @@
       </section>
 
       <div>
-        <p>回复的主题</p>
+        <p>参与的主题</p>
         <ul>
           <li v-for="item in userData.recent_replies">
             <router-link :to="{
@@ -34,7 +34,7 @@
             <router-link :to="{
               name:'post_content',
               params:{
-                id:item.id
+                id:item.id,
               }
             }">
               {{item.title}}
@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script lang="js">
+<script>
   import Loading from './Loading'
 
   export default {
@@ -65,7 +65,6 @@
           .then(res => {
             this.isLoading = false
             this.userData = res.data.data
-
           })
           .catch(error => {
             console.log(error)

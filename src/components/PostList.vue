@@ -31,7 +31,13 @@
             </span>
           </span>
 
-          <router-link :to="{name:'post_content', params:{id:post.id}}">
+          <router-link :to="{
+            name:'post_content',
+            params:{
+              id: post.id,
+              name: post.author.loginname
+             },
+          }">
               <span class="post_title">
                  {{post.title}}
               </span>
@@ -46,7 +52,7 @@
   </div>
 </template>
 
-<script lang="js">
+<script>
   import Loading from './Loading'
 
   export default {
@@ -66,7 +72,7 @@
         })
           .then(res => {
             this.isLoading = false
-            this.post= res.data.data
+            this.post = res.data.data
           })
           .catch(error => {
             console.log(error)

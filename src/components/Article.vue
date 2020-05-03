@@ -44,7 +44,7 @@
   </div>
 </template>
 
-<script lang="js">
+<script>
   import Loading from './Loading'
   import 'github-markdown-css'
 
@@ -74,6 +74,11 @@
     beforeMount() {
       this.isLoading = true
       this.getArticleData()
+    },
+    watch:{
+      '$route'(to,from){
+        this.getArticleData()
+      }
     }
   }
 </script>
