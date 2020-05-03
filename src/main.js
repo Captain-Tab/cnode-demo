@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Axios from 'axios'
+import get from './utils/CommonMethod'
 
+Vue.prototype.$alert = get
 Vue.prototype.$http = Axios;
 Vue.config.productionTip = false
 

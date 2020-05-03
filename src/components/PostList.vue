@@ -1,11 +1,11 @@
 <template>
   <div>
-   <Loading v-if="isLoading"></Loading>
+    <Loading v-if="isLoading"></Loading>
 
-    <div class="posts" v-else="isLoading">
+    <div class="posts" v-else>
       <ul>
         <li>
-          <div class="topbar">
+          <div class="top_bar">
             <span>全部</span>
             <span>精华</span>
             <span>分享</span>
@@ -14,7 +14,7 @@
           </div>
         </li>
 
-        <li v-for="post in postData"
+        <li v-for="post in post"
             class="postItem">
           <img :src="post.author.avatar_url" alt="userProfile">
           <span>
@@ -30,9 +30,13 @@
               {{post| tabFormate}}
             </span>
           </span>
-          <span class="post_title">
-            {{post.title}}
-          </span>
+
+          <router-link :to="{name:'post_content', params:{id:post.id}}">
+              <span class="post_title">
+                 {{post.title}}
+              </span>
+          </router-link>
+
           <span class="last_reply">
             {{post.last_reply_at | formatDate}}
           </span>
@@ -43,14 +47,15 @@
 </template>
 
 <script lang="js">
-  import Loading  from './Loading'
+  import Loading from './Loading'
+
   export default {
     name: "PostList",
-    components:{Loading},
+    components: {Loading},
     data() {
       return {
         isLoading: false,
-        postData: []
+        post: []
       }
     },
     methods: {
@@ -61,7 +66,7 @@
         })
           .then(res => {
             this.isLoading = false
-            this.postData = res.data.data
+            this.post= res.data.data
           })
           .catch(error => {
             console.log(error)
@@ -79,7 +84,6 @@
 
   .posts {
     background-color: #e1e1e1;
-    margin-top: 10px;
   }
 
   .last_reply {
@@ -125,9 +129,11 @@
     position: relative;
     border-top: 1px solid #f0f0f0;
   }
+
   .posts li:first-child {
     padding: 10px 0 10px 0px;
   }
+
   .postItem img {
     width: 30px;
     height: 30px;
@@ -166,12 +172,12 @@
     text-decoration: underline;
   }
 
-  .topbar {
+  .top_bar {
     height: 40px;
     background-color: #f5f5f5;
   }
 
-  .topbar span {
+  .top_bar span {
     font-size: 14px;
     color: #80bd01;
     line-height: 40px;
@@ -179,7 +185,7 @@
     cursor: pointer;
   }
 
-  .topbar span:hover {
+  .top_bar span:hover {
     color: #9e78c0;
   }
 
