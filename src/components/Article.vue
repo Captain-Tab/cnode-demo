@@ -19,9 +19,19 @@
       <div class="top_bar">回复</div>
       <div v-for="(reply,index) in post.replies" class="replySec">
         <div class="replyUp">
-          <router-link>
+          <router-link
+            :to="{
+            name:'user_info',
+            params:{
+              name:reply.author.loginname
+            }
+          }">
             <img :src="reply.author.avatar_url" alt="">
           </router-link>
+<!--          <router-link>-->
+<!--            <span> {{reply.author.loginname}}</span>-->
+<!--          </router-link>-->
+
 
           <span>{{reply.author.loginname}}</span>
           <span>{{index+1}}楼</span>
