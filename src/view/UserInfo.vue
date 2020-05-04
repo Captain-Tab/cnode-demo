@@ -1,46 +1,65 @@
 <template>
-  <div class="">
+  <div class="user_inf">
     <Loading v-if="isLoading"></Loading>
-    <div class="user-information">
+    <div class="user-information" v-else>
+
       <section>
-        <img :src="userData.avatar_url" alt="">
-        <span>{{userData.loginname}}</span>
-        <p>
-          {{userData.score}}积分
-        </p>
-        <p>注册时间:{{userData.create_at | formatDate }}</p>
+        <div class="link">
+          <router-link :to="{name:'root'}">
+            <span>主页 /</span>
+          </router-link>
+        </div>
+        <div class="short-info">
+          <img :src="userData.avatar_url" alt="">
+          <span>{{userData.loginname}}</span>
+          <p>
+            {{userData.score}}积分
+          </p>
+          <p>注册时间:{{userData.create_at | formatDate }}</p>
+        </div>
       </section>
 
-      <div>
-        <p>参与的主题</p>
-        <ul>
-          <li v-for="item in userData.recent_replies">
-            <router-link :to="{
+      <div class="after-section">
+        <div class="content-header">
+          <span>参与的主题</span>
+        </div>
+
+        <div class="topic-list">
+          <ul>
+            <li v-for="item in userData.recent_replies">
+              <router-link :to="{
               name:'post_content',
               params:{
                 id:item.id
               }
             }">
-              {{item.title}}
-            </router-link>
-          </li>
-        </ul>
+                {{item.title}}
+              </router-link>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div >
-        <p>创建的主题</p>
-        <ul>
-          <li v-for="item in userData.recent_topics">
-            <router-link :to="{
+      <div class="end-section">
+        <div class="content-header">
+          <span>创建的主题</span>
+        </div>
+
+        <div class="topic-list">
+          <ul>
+            <li v-for="item in userData.recent_topics">
+              <router-link :to="{
               name:'post_content',
               params:{
                 id:item.id,
               }
             }">
-              {{item.title}}
-            </router-link>
-          </li>
-        </ul>
+                {{item.title}}
+              </router-link>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
@@ -80,14 +99,46 @@
 </script>
 
 <style scoped>
+  .user_inf {
+    background-color: #e1e1e1;
+    padding: 20px 0;
+  }
+
   .user-information {
-    background: white;
-    width: 75%;
-    margin: 10px auto;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .user-information section {
-    padding: 12px;
+    margin-bottom: 20px;
+  }
+
+  .link {
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 3px 3px 0 0;
+    color: #80bd01;
+  }
+
+  .link span:hover {
+    text-decoration: underline;
+  }
+
+  .short-info {
+    padding: 10px;
+    background-color: #ffffff;
+  }
+
+  .short-info img {
+    vertical-align: middle;
+  }
+
+  .short-info span {
+    margin-left: 10px;
+  }
+
+  .short-info p {
+    margin: 14px 0;
   }
 
   .user-information img {
@@ -98,29 +149,42 @@
     list-style: none;
   }
 
-  .user-information, .user-information{
-    font-size: 0.72rem;
+  .after-section {
+    margin-bottom: 20px;
+  }
+
+  .content-header {
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .topic-list {
+    background-color: #ffffff;
   }
 
   .user-information > div > p {
     padding: 12px 0 12px 12px;
     background-color: rgba(212, 205, 205, 0.17);
-    font-size: 0.75rem;
     margin: 0;
   }
 
-  .user-information > div > ul > li {
-    padding: 4px 0 4px 12px;
+  .topic-list > ul > li {
+    padding: 10px 18px 10px 20px;
     white-space: nowrap;
-    font-size: 0.72rem;
     text-overflow: ellipsis;
     overflow: hidden;
     line-height: 30px;
     vertical-align: middle;
+    border-bottom: 1px solid #f6f6f6;
   }
 
-  .user-information > div > ul > li > a {
+  .topic-list > ul > li > a {
     color: #094E99;
     text-decoration: none;
+  }
+
+  .topic-list > ul > li > a:hover {
+    text-decoration: underline;
   }
 </style>
