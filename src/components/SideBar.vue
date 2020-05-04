@@ -95,7 +95,7 @@
   }
 
   li {
-    padding: 3px 0;
+    padding: 7px 0;
   }
 
   .recent_replies ul, .recent_topics ul {
@@ -114,7 +114,6 @@
   .top-bar {
     padding: 10px;
     background-color: #f6f6f6;
-    height: 16px;
     font-size: 12px;
     margin-top: 10px;
   }
@@ -140,6 +139,6 @@
   }
 
   .author-summary .top-bar {
-    margin-top: 0px;
+    margin-top: 0;
   }
 </style>

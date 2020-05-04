@@ -8,6 +8,7 @@ import get from './utils/CommonMethod'
 
 Vue.prototype.$alert = get
 Vue.prototype.$http = Axios;
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
