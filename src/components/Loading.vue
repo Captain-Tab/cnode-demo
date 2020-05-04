@@ -14,7 +14,7 @@
 
   .loading {
     width: 90%;
-    max-width: 1080px;
+    max-width: 1200px;
     margin: auto;
     position: relative;
     background-color: #ffffff;

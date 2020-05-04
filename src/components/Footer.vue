@@ -31,7 +31,7 @@
     padding: 20px 0;
     color: black;
     width: 100%;
-    max-width: 1344px;
+    max-width: 1200px;
     margin: 0 auto;
     height: auto;
   }

@@ -57,7 +57,7 @@
 
 <script>
   import Loading from '../components/Loading'
-  import Pagination from './Pagination'
+  import Pagination from '../components/Pagination'
 
   export default {
     name: "PostList",
@@ -116,7 +116,7 @@
 
   ul {
     width: 100%;
-    max-width: 1344px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 

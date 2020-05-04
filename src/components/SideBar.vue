@@ -2,26 +2,31 @@
   <div class="author-info">
     <div class="author-summary">
       <div class="top-bar">作者</div>
-      <router-link :to="{
+      <div class="author-profile">
+        <router-link :to="{
         name:'user_info',
         params:{
           name: userData.loginname
         }
       }">
-        <img :src="userData.avatar_url" alt="">
-      </router-link>
+          <img :src="userData.avatar_url" alt="">
+          <span>{{userData.loginname}}</span>
+        </router-link>
+      </div>
+
     </div>
     <div class="recent_topics">
       <div class="top-bar">作者最近参与的主题</div>
       <ul>
         <li v-for="list in topicLimit">
-         <router-link :to="{
+          <router-link :to="{
            name: 'post_content',
            params: {
              id: list.id,
              name: list.author.loginname
            }
-         }">{{list.title}}</router-link>
+         }">{{list.title}}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -35,7 +40,8 @@
              id: list.id,
              name: list.author.loginname
            }
-         }">{{list.title}}</router-link>
+         }">{{list.title}}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -50,7 +56,7 @@
         userData: {}
       }
     },
-    methods:{
+    methods: {
       getData() {
         this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
           .then(res => {
@@ -64,15 +70,15 @@
           })
       }
     },
-    computed:{
-      topicLimit(){
-        if(this.userData.recent_replies){
-          return this.userData.recent_replies.slice(0,5)
+    computed: {
+      topicLimit() {
+        if (this.userData.recent_replies) {
+          return this.userData.recent_replies.slice(0, 5)
         }
       },
-      replyLimit(){
-        if(this.userData.recent_topics){
-          return this.userData.recent_topics.slice(0,5)
+      replyLimit() {
+        if (this.userData.recent_topics) {
+          return this.userData.recent_topics.slice(0, 5)
         }
       }
     },
@@ -89,9 +95,14 @@
   }
 
   .author-info {
-    width: 328px;
-    float: right;
-    margin-top: 0;
+    width: 22%;
+    float: right
+  }
+  .author-profile{
+    display: block;
+  }
+  .author-profile img{
+    vertical-align: middle;
   }
 
   li {
