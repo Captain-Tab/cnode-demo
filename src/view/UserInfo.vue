@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import Loading from './Loading'
+  import Loading from '../components/Loading'
 
   export default {
     name: "UserInfo",

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import Loading from './Loading'
+  import Loading from '../components/Loading'
   import 'github-markdown-css'
 
   export default {

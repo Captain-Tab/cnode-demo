@@ -56,7 +56,7 @@
 </template>
 
 <script>
-  import Loading from './Loading'
+  import Loading from '../components/Loading'
   import Pagination from './Pagination'
 
   export default {
@@ -101,6 +101,7 @@
 
   .posts {
     background-color: #e1e1e1;
+    padding-bottom: 20px;
   }
 
   .last_reply {
@@ -122,7 +123,6 @@
   ul li:not(:first-child) {
     padding: 9px;
     font-size: 15px;
-    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, sans-serif !important;
     font-weight: 400;
     background-color: white;
     color: #333;
@@ -131,6 +131,10 @@
 
   li:not(:first-child):hover {
     background: #f5f5f5;
+  }
+
+   .posts li:last-child{
+    border: unset;
   }
 
   li:last-child:hover {
@@ -148,7 +152,7 @@
   }
 
   .posts li:first-child {
-    padding: 10px 0 10px 0px;
+    padding: 20px 0 0 0;
   }
 
   .postItem img {
@@ -192,6 +196,7 @@
   .top_bar {
     height: 40px;
     background-color: #f5f5f5;
+    padding: 0;
   }
 
   .top_bar span {

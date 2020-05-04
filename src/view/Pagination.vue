@@ -1,14 +1,14 @@
 <template>
   <div class="pagination">
     <button @click="clickButton">首页</button>
-    <button @click="clickButton">上一页</button>
+    <button @click="clickButton">«</button>
     <button v-if="addDot" class="page-btn">...</button>
     <button v-for="btn in page_btn"
             :class="[{currentPage:btn === currentPage},'page-btn']"
             @click="clickButton(btn)">
       {{btn}}
     </button>
-    <button @click="clickButton">下一页</button>
+    <button @click="clickButton">»</button>
   </div>
 </template>
 
@@ -27,10 +27,10 @@
       clickButton(page) {
         if (typeof page != 'number') {
           switch (page.target.innerText) {
-            case '上一页':
+            case '«':
               $('button.currentPage').prev().click()
               break
-            case '下一页':
+            case '»':
               $('button.currentPage').next().click()
               break
             case '首页':
@@ -64,13 +64,8 @@
 
 <style scoped>
   .pagination {
-    margin-top: 5px;
-    margin-bottom: 20px;
     background-color: white;
-    padding: 6px 20px;
     border-radius: 5px;
-    /*box-shadow: 0px 2px 9px #888888;*/
-    border: 1px solid #888888;
   }
 
   button {
@@ -81,20 +76,24 @@
     outline: none;
     cursor: pointer;
     padding: 0 2px;
-    width: 55px;
-    height: 29px;
+    width: 42px;
+    height: 37px;
   }
 
   .page-btn {
     position: relative;
-    bottom: 1px;
     width: 40px;
     margin: 0 4px;
   }
 
+  button:hover{
+    background-color: #bfbfbf;
+  }
   .currentPage {
     color: white;
     background-color: #1f1b1b;
-
+  }
+  .currentPage:hover{
+    background-color: #1f1b1b;
   }
 </style>

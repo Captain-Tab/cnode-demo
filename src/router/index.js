@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Article from '../components/Article'
-import PostList from '../components/PostList'
-import UserInfo from '../components/UserInfo'
-import SideBar from '../components/SideBar'
+import Article from '../view/Article'
+import PostList from '../view/PostList'
+import UserInfo from '../view/UserInfo'
+import SideBar from '../view/SideBar'
 
 Vue.use(Router)
 
