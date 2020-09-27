@@ -5,12 +5,15 @@
     <div class="posts" v-else>
       <ul>
         <li>
-          <div class="top_bar">
-            <span>全部</span>
-            <span>精华</span>
-            <span>分享</span>
-            <span>问答</span>
-            <span>招聘</span>
+          <div class="top_bar" @click="switchTab">
+            <span
+              v-for="(tab,index) in tabList"
+              :key="index"
+              :name="tab.name"
+              :class="tab.name === tabName ? 'tab' : ''"
+            >
+              {{tab.value}}
+            </span>
           </div>
         </li>
 
@@ -64,17 +67,45 @@
     components: {Loading, Pagination},
     data() {
       return {
+        tabList: [
+          {
+            name: 'all',
+            value: '全部'
+          },
+          {
+            name: 'good',
+            value: '精华'
+          },
+          {
+            name: 'share',
+            value: '分享'
+          },
+          {
+            name: 'ask',
+            value: '问答'
+          },
+          {
+            name: 'job',
+            value: '招聘'
+          },
+          {
+           name: 'dev',
+            value: '客户端测试'
+          }
+        ],
         isLoading: false,
         post: [],
-        postPage: 1
+        postPage: 1,
+        tabName: 'all'
       }
     },
     methods: {
-      getData() {
+      getData(tab) {
         this.$http.get('https://cnodejs.org/api/v1/topics', {
           params: {
             page: this.postPage,
-            limit: 20
+            limit: 20,
+            tab
           }
         })
           .then(res => {
@@ -87,7 +118,12 @@
       },
       handleRender(value) {
         this.postPage = value
-        this.getData()
+        this.getData(this.tabName)
+      },
+      switchTab(e){
+        this.tabName = e.target.getAttribute('name') || 'all'
+        this.isLoading = true
+        this.getData(this.tabName)
       }
     },
     beforeMount() {
@@ -205,6 +241,13 @@
     line-height: 40px;
     margin: 0 10px;
     cursor: pointer;
+  }
+
+  .top_bar span.tab {
+    background: #80bd01;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
   }
 
   .top_bar span:hover {

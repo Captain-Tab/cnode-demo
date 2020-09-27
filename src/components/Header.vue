@@ -3,15 +3,6 @@
     <router-link :to="{name:'root'}">
       <img src="../assets/img/cnodejs_light.svg" alt="cnode-logo">
     </router-link>
-
-    <ul>
-      <li><a href="#">首页</a></li>
-      <li><a href="#">新手入门</a></li>
-      <li><a href="#">API</a></li>
-      <li><a href="#">关于</a></li>
-      <li><a href="#">注册</a></li>
-      <li><a href="#">登录</a></li>
-    </ul>
   </div>
 </template>
 
