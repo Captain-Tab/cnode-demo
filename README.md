@@ -4,7 +4,7 @@
 ### 预览
 [在线预览](http://yixinistab.xyz/cnode-demo-build/#/)
 
-![0FvaOx.gif](https://s1.ax1x.com/2020/09/27/0FvaOx.gif)
+![](https://s1.ax1x.com/2020/09/27/0FvaOx.gif)
 ### 开发技术
 ```
     "axios": "^0.19.2",
